@@ -81,8 +81,6 @@ class VideoActivity : AppCompatActivity() {
                                 rel: 0,
                                 showinfo: 0,
                                 modestbranding: 1,
-                                loop: 1,
-                                playlist: '$VIDEO_ID',
                                 iv_load_policy: 3,
                                 fs: 0,
                                 playsinline: 1
@@ -93,11 +91,13 @@ class VideoActivity : AppCompatActivity() {
                                     event.target.playVideo();
                                 },
                                 onStateChange: function(event) {
-                                    // Video bitince yeniden başlat
-                                    if (event.data === YT.PlayerState.ENDED) {
-                                        player.seekTo(0);
-                                        player.playVideo();
-                                    }
+                                    // Video tamamen bitince Welcome ekranına dön
+if (event.data === YT.PlayerState.ENDED) {
+    Android.onVideoEnded();
+},
+onError: function(event) {
+    Android.onVideoEnded();
+}
                                 },
                                 onError: function(event) {
                                     // Hata durumunda welcome ekranına dön
