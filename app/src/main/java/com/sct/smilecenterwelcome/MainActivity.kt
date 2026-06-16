@@ -34,10 +34,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                val intent = Intent(this@MainActivity, VideoActivity::class.java)
-                startActivity(intent)
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-            }
+                try {
+                    val intent = Intent(this@MainActivity, VideoActivity::class.java)
+                    startActivity(intent)
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                } catch (e: Exception) {
+                e.printStackTrace()
+                }
+        }
         }.start()
     }
 
